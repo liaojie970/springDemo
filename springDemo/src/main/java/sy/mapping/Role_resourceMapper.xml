@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="sy.dao.Role_resourceMapper" >
+  <resultMap id="BaseResultMap" type="sy.model.Role_resource" >
+    <id column="resourceId" property="resourceid" jdbcType="INTEGER" />
+    <id column="roleId" property="roleid" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="map" >
+    delete from role_resource
+    where resourceId = #{resourceid,jdbcType=INTEGER}
+      and roleId = #{roleid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="sy.model.Role_resource" >
+    insert into role_resource (resourceId, roleId)
+    values (#{resourceid,jdbcType=INTEGER}, #{roleid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="sy.model.Role_resource" >
+    insert into role_resource
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="resourceid != null" >
+        resourceId,
+      </if>
+      <if test="roleid != null" >
+        roleId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="resourceid != null" >
+        #{resourceid,jdbcType=INTEGER},
+      </if>
+      <if test="roleid != null" >
+        #{roleid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>
